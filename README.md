@@ -14,7 +14,7 @@ This is a repo with notes for Computer Science topics
 - Settings → Files & Links. Set “Default location for new attachments” to: ```attachments```
 - Install mkdocs using command ```pip install mkdocs mkdocs-material```
 - cd to this repo and run this command ```mkdocs new .```
-- Now update ```mkdocs.yml``` to this:
+- Now update ```mkdocs.yml``` to this (Update nav as you add more files.):
 ```yml
 site_name: cs-notes
 site_url: https://yourusername.github.io/my-notes/
@@ -33,6 +33,6 @@ nav:
   - Principles:
       - Solid: principles/solid.md
 ```
-Update nav as you add more files.
+
 - Add commits and push to github
 - run ```mkdocs gh-deploy```
