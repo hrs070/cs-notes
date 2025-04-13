@@ -1,23 +1,28 @@
 # cs-notes
 
-# About
+## About
+
 This is a repo with notes for Computer Science topics
 
-# Tools Used
-- **Obsidian**: Notes are taken using Obsidian for easy markdown, images and code snnipets insertion
+## Tools Used
+
+- **Obsidian**: Notes are taken using Obsidian for easy markdown, images and code snippets insertion
 - **mkdocs**: Use to deploy markdown files to github pages.
 
-# Steps
+## Steps
+
 - Clone this repo
 - Install Obsidian.
 - Turn Off Wiki Links (for MkDocs). Settings → Editor. Disable “Use [[WikiLinks]]”
 - Settings → Files & Links. Set “Default location for new attachments” to: ```attachments```
-- Install mkdocs using command ```pip install mkdocs mkdocs-material```
+- Install python if not already installed ```brew install python```
+- Then using command ```pip3 install mkdocs mkdocs-material```
 - cd to this repo and run this command ```mkdocs new .```
 - Now update ```mkdocs.yml``` to this (Update nav as you add more files.):
+
 ```yml
 site_name: cs-notes
-site_url: https://yourusername.github.io/my-notes/
+site_url: https://hrs070.github.io/cs-notes/
 
 theme:
   name: material
