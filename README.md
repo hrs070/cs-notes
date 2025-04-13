@@ -1,7 +1,6 @@
 # cs-notes
 
-# Live Link: https://hrs070.github.io/cs-notes/
-
+## [🔗 Link to Deployed Notes](https://hrs070.github.io/cs-notes)
 
 ## About
 
