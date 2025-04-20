@@ -24,14 +24,14 @@ Kubernetes abstracts away the underlying machines and gives you a clean, declara
 - A **Node** is a physical or virtual machine in the cluster.
 - It provides the resources (CPU, memory, storage) needed to run applications.
 - Each node runs:
-  - **Kubelet**: Ensures containers are running in pods.
-  - **Kube-proxy**: Manages networking for pods.
+    - **Kubelet**: Ensures containers are running in pods.
+    - **Kube-proxy**: Manages networking for pods.
 
 ### Pod
 - A **Pod** is the smallest deployable unit in Kubernetes.
 - It represents one or more containers that share:
-  - Network namespace (IP address).
-  - Storage volumes.
+    - Network namespace (IP address).
+    - Storage volumes.
 - Pods are ephemeral and are managed by higher-level controllers like Deployments.
 
 ### Deployment
@@ -42,9 +42,9 @@ Kubernetes abstracts away the underlying machines and gives you a clean, declara
 ### Service
 - A **Service** provides a stable network endpoint to access pods.
 - It abstracts the dynamic nature of pods and offers:
-  - **ClusterIP**: Internal communication within the cluster.
-  - **NodePort**: Exposes the service on a specific port of each node.
-  - **LoadBalancer**: Exposes the service externally using a cloud provider's load balancer.
+    - **ClusterIP**: Internal communication within the cluster.
+    - **NodePort**: Exposes the service on a specific port of each node.
+    - **LoadBalancer**: Exposes the service externally using a cloud provider's load balancer.
 
 ### ConfigMap & Secret
 - **ConfigMap**: Injects configuration data (non-sensitive) into pods.
@@ -96,10 +96,10 @@ Kubernetes abstracts away the underlying machines and gives you a clean, declara
 - The **Control Plane** is the brain of the cluster.
 - It manages the state of the cluster and schedules workloads.
 - Key components:
-  - **API Server**: Exposes the Kubernetes API.
-  - **etcd**: Stores cluster state and configuration.
-  - **Scheduler**: Assigns pods to nodes.
-  - **Controller Manager**: Ensures the desired state of the cluster.
+    - **API Server**: Exposes the Kubernetes API.
+    - **etcd**: Stores cluster state and configuration.
+    - **Scheduler**: Assigns pods to nodes.
+    - **Controller Manager**: Ensures the desired state of the cluster.
 
 ### etcd
 - A distributed key-value store used to store all cluster data.
@@ -111,8 +111,8 @@ Kubernetes abstracts away the underlying machines and gives you a clean, declara
 ### Controller Manager
 - The **Controller Manager** runs controllers that regulate the state of the cluster.
 - Example controllers:
-  - **Node Controller**: Monitors node health.
-  - **Replication Controller**: Ensures the desired number of pod replicas.
+    - **Node Controller**: Monitors node health.
+    - **Replication Controller**: Ensures the desired number of pod replicas.
 
 ### Admission Controller
 - Validates and modifies requests to the API server before they are persisted in etcd.
@@ -129,8 +129,8 @@ Kubernetes abstracts away the underlying machines and gives you a clean, declara
 
 ### Pod Security Policies
 - **Pod Security Policies** control security settings for pods, such as:
-  - Privileged access.
-  - Host network usage.
+    - Privileged access.
+    - Host network usage.
 
 ### ServiceAccount
 - A **ServiceAccount** provides an identity for processes running in a pod to interact with the Kubernetes API.
@@ -248,9 +248,9 @@ Kubernetes abstracts away the underlying machines and gives you a clean, declara
 ### Service Mesh
 - A dedicated infrastructure layer for managing service-to-service communication.
 - Features:
-  - Traffic management (routing, load balancing).
-  - Observability (metrics, logs, tracing).
-  - Security (mTLS).
+    - Traffic management (routing, load balancing).
+    - Observability (metrics, logs, tracing).
+    - Security (mTLS).
 - Examples: Istio, Linkerd.
 
 ### Container Runtimes
