@@ -16,5 +16,8 @@ nav:
   - Principles:
     - SOLID: principles/solid.md
     - ATOM: principles/atom.md
-  - Kubernetes (k8s):
-    - Basics: k8s/basics.md
+  - DevOps:
+    - Kubernetes (k8s):
+      - Basics: devops/k8s/basics.md
+      - Pods: devops/k8s/pods.md
+      - Deployment: devops/k8s/deployment.md
