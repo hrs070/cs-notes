@@ -2,14 +2,54 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://hrs070.github.io/cs-notes/</loc>
-         <lastmod>2025-04-13</lastmod>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/cleanCode/</loc>
+         <lastmod>2025-04-20</lastmod>
     </url>
     <url>
          <loc>https://hrs070.github.io/cs-notes/tips-and-snippets/</loc>
-         <lastmod>2025-04-13</lastmod>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/basics/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/crd/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/deployment/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/faq/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/helm/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/pods/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/service/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/devops/k8s/volume/</loc>
+         <lastmod>2025-04-20</lastmod>
+    </url>
+    <url>
+         <loc>https://hrs070.github.io/cs-notes/principles/atom/</loc>
+         <lastmod>2025-04-20</lastmod>
     </url>
     <url>
          <loc>https://hrs070.github.io/cs-notes/principles/solid/</loc>
-         <lastmod>2025-04-13</lastmod>
+         <lastmod>2025-04-20</lastmod>
     </url>
 </urlset>

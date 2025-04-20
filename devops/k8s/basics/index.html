@@ -1,0 +1,2357 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://hrs070.github.io/cs-notes/devops/k8s/basics/">
+      
+      
+        <link rel="prev" href="../../../principles/atom/">
+      
+      
+        <link rel="next" href="../pods/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Basics - cs-notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#what-is-kubernetes" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="cs-notes" class="md-header__button md-logo" aria-label="cs-notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            cs-notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Basics
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="cs-notes" class="md-nav__button md-logo" aria-label="cs-notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    cs-notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../tips-and-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tips & Snippets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../cleanCode/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clean Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Principles
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Principles
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../principles/solid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOLID
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../principles/atom/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ATOM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DevOps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes (k8s)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes (k8s)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Basics
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basics
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧱 1. Core Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 1. Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmap-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConfigMap &amp; Secret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReplicaSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statefulset" class="md-nav__link">
+    <span class="md-ellipsis">
+      StatefulSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daemonset" class="md-nav__link">
+    <span class="md-ellipsis">
+      DaemonSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cronjob" class="md-nav__link">
+    <span class="md-ellipsis">
+      CronJob
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal Pod Autoscaler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-resource-definitions-crds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Resource Definitions (CRDs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubelet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubelet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kube-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kube-proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Plane
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      etcd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scheduler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admission-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admission Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-quotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Quotas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitrange" class="md-nav__link">
+    <span class="md-ellipsis">
+      LimitRange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-security-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Security Policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serviceaccount" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServiceAccount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac-role-based-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC (Role-Based Access Control)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Plugins
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-storage-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      💾 2. Storage &amp; Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💾 2. Storage &amp; Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolume-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolume (PV)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolumeclaim-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolumeClaim (PVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storageclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      StorageClass
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-advanced-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 3. Advanced Workloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 3. Advanced Workloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statefulsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      StatefulSets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daemonsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      DaemonSets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobs-cronjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jobs &amp; CronJobs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Init Containers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-extending-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔌 4. Extending Kubernetes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 4. Extending Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-resources-crds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Resources (CRDs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admission-controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admission Controllers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuration-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎛️ 5. Configuration &amp; Packaging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎛️ 5. Configuration &amp; Packaging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kustomize" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kustomize
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-security-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 6. Security &amp; Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 6. Security &amp; Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serviceaccounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServiceAccounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 7. Observability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 7. Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cicd-gitops" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 8. CI/CD &amp; GitOps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ 8. CI/CD &amp; GitOps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argocd-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArgoCD / Flux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jenkins-github-actions-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins / GitHub Actions + kubectl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cloud-native-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☁️ 9. Cloud-Native Ecosystem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="☁️ 9. Cloud-Native Ecosystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingress-controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress Controllers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-runtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Runtimes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-learning-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 Recommended Learning Order
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../volume/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Volume
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CRD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-core-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      🧱 1. Core Concepts
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🧱 1. Core Concepts">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cluster" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cluster
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node" class="md-nav__link">
+    <span class="md-ellipsis">
+      Node
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deployment" class="md-nav__link">
+    <span class="md-ellipsis">
+      Deployment
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#configmap-secret" class="md-nav__link">
+    <span class="md-ellipsis">
+      ConfigMap &amp; Secret
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#volume" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volume
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#namespace" class="md-nav__link">
+    <span class="md-ellipsis">
+      Namespace
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#replicaset" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReplicaSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#statefulset" class="md-nav__link">
+    <span class="md-ellipsis">
+      StatefulSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daemonset" class="md-nav__link">
+    <span class="md-ellipsis">
+      DaemonSet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#job" class="md-nav__link">
+    <span class="md-ellipsis">
+      Job
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cronjob" class="md-nav__link">
+    <span class="md-ellipsis">
+      CronJob
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#horizontal-pod-autoscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Horizontal Pod Autoscaler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#custom-resource-definitions-crds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Resource Definitions (CRDs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kubelet" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kubelet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kube-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kube-proxy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#control-plane" class="md-nav__link">
+    <span class="md-ellipsis">
+      Control Plane
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#etcd" class="md-nav__link">
+    <span class="md-ellipsis">
+      etcd
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#scheduler" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scheduler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#controller-manager" class="md-nav__link">
+    <span class="md-ellipsis">
+      Controller Manager
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admission-controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admission Controller
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policy" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policy
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resource-quotas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Resource Quotas
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limitrange" class="md-nav__link">
+    <span class="md-ellipsis">
+      LimitRange
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pod-security-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pod Security Policies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serviceaccount" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServiceAccount
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rbac-role-based-access-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC (Role-Based Access Control)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-plugins" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Plugins
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-storage-persistence" class="md-nav__link">
+    <span class="md-ellipsis">
+      💾 2. Storage &amp; Persistence
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="💾 2. Storage &amp; Persistence">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolume-pv" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolume (PV)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#persistentvolumeclaim-pvc" class="md-nav__link">
+    <span class="md-ellipsis">
+      PersistentVolumeClaim (PVC)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#storageclass" class="md-nav__link">
+    <span class="md-ellipsis">
+      StorageClass
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-advanced-workloads" class="md-nav__link">
+    <span class="md-ellipsis">
+      📦 3. Advanced Workloads
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📦 3. Advanced Workloads">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#statefulsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      StatefulSets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#daemonsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      DaemonSets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jobs-cronjobs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jobs &amp; CronJobs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#init-containers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Init Containers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-extending-kubernetes" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔌 4. Extending Kubernetes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔌 4. Extending Kubernetes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#custom-resources-crds" class="md-nav__link">
+    <span class="md-ellipsis">
+      Custom Resources (CRDs)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operators" class="md-nav__link">
+    <span class="md-ellipsis">
+      Operators
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#admission-controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Admission Controllers
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-configuration-packaging" class="md-nav__link">
+    <span class="md-ellipsis">
+      🎛️ 5. Configuration &amp; Packaging
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🎛️ 5. Configuration &amp; Packaging">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#helm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Helm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kustomize" class="md-nav__link">
+    <span class="md-ellipsis">
+      Kustomize
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-security-access" class="md-nav__link">
+    <span class="md-ellipsis">
+      🔒 6. Security &amp; Access
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="🔒 6. Security &amp; Access">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rbac" class="md-nav__link">
+    <span class="md-ellipsis">
+      RBAC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#serviceaccounts" class="md-nav__link">
+    <span class="md-ellipsis">
+      ServiceAccounts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#network-policies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Network Policies
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-observability" class="md-nav__link">
+    <span class="md-ellipsis">
+      📈 7. Observability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="📈 7. Observability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#logs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Logs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Tracing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#probes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Probes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-cicd-gitops" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⚙️ 8. CI/CD &amp; GitOps
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⚙️ 8. CI/CD &amp; GitOps">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#argocd-flux" class="md-nav__link">
+    <span class="md-ellipsis">
+      ArgoCD / Flux
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#jenkins-github-actions-kubectl" class="md-nav__link">
+    <span class="md-ellipsis">
+      Jenkins / GitHub Actions + kubectl
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#secrets-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      Secrets Management
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-cloud-native-ecosystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      ☁️ 9. Cloud-Native Ecosystem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="☁️ 9. Cloud-Native Ecosystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ingress-controllers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ingress Controllers
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#service-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Service Mesh
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#container-runtimes" class="md-nav__link">
+    <span class="md-ellipsis">
+      Container Runtimes
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recommended-learning-order" class="md-nav__link">
+    <span class="md-ellipsis">
+      📘 Recommended Learning Order
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="what-is-kubernetes">🧭 What is Kubernetes?</h1>
+<p>Kubernetes (also called k8s) is an open-source platform to automate deploying, scaling, and managing containerized applications. Think of it like an operating system for your data center.</p>
+<p>Imagine you have 100 containers running your app. Kubernetes helps you:</p>
+<ul>
+<li>Start them on different machines (nodes)</li>
+<li>Keep them alive (self-healing)</li>
+<li>Scale them up or down automatically</li>
+<li>Handle traffic</li>
+<li>Store persistent data</li>
+</ul>
+<p>Kubernetes abstracts away the underlying machines and gives you a clean, declarative way to run apps.</p>
+<hr />
+<h2 id="1-core-concepts">🧱 1. Core Concepts</h2>
+<h3 id="cluster">Cluster</h3>
+<ul>
+<li>A <strong>Cluster</strong> is a group of machines (nodes) running containers.</li>
+<li>It consists of a <strong>Control Plane</strong> (manages the cluster) and <strong>Nodes</strong> (run workloads).</li>
+</ul>
+<h3 id="node">Node</h3>
+<ul>
+<li>A <strong>Node</strong> is a physical or virtual machine in the cluster.</li>
+<li>It provides the resources (CPU, memory, storage) needed to run applications.</li>
+<li>Each node runs:<ul>
+<li><strong>Kubelet</strong>: Ensures containers are running in pods.</li>
+<li><strong>Kube-proxy</strong>: Manages networking for pods.</li>
+</ul>
+</li>
+</ul>
+<h3 id="pod">Pod</h3>
+<ul>
+<li>A <strong>Pod</strong> is the smallest deployable unit in Kubernetes.</li>
+<li>It represents one or more containers that share:<ul>
+<li>Network namespace (IP address).</li>
+<li>Storage volumes.</li>
+</ul>
+</li>
+<li>Pods are ephemeral and are managed by higher-level controllers like Deployments.</li>
+</ul>
+<h3 id="deployment">Deployment</h3>
+<ul>
+<li>A <strong>Deployment</strong> ensures that the desired number of pod replicas are running.</li>
+<li>It manages updates to pods and their underlying containers.</li>
+<li>Example use case: Rolling updates to deploy a new version of an application.</li>
+</ul>
+<h3 id="service">Service</h3>
+<ul>
+<li>A <strong>Service</strong> provides a stable network endpoint to access pods.</li>
+<li>It abstracts the dynamic nature of pods and offers:<ul>
+<li><strong>ClusterIP</strong>: Internal communication within the cluster.</li>
+<li><strong>NodePort</strong>: Exposes the service on a specific port of each node.</li>
+<li><strong>LoadBalancer</strong>: Exposes the service externally using a cloud provider's load balancer.</li>
+</ul>
+</li>
+</ul>
+<h3 id="configmap-secret">ConfigMap &amp; Secret</h3>
+<ul>
+<li><strong>ConfigMap</strong>: Injects configuration data (non-sensitive) into pods.</li>
+<li><strong>Secret</strong>: Injects sensitive data (e.g., passwords, API keys) into pods securely.</li>
+</ul>
+<h3 id="volume">Volume</h3>
+<ul>
+<li>A <strong>Volume</strong> is a storage resource attached to a pod.</li>
+<li>It persists data beyond the lifecycle of a container but not beyond the lifecycle of the pod.</li>
+</ul>
+<h3 id="namespace">Namespace</h3>
+<ul>
+<li>A <strong>Namespace</strong> is a virtual cluster within a physical cluster.</li>
+<li>It is used for organizing resources and enabling multi-tenancy.</li>
+</ul>
+<h3 id="replicaset">ReplicaSet</h3>
+<ul>
+<li>A <strong>ReplicaSet</strong> ensures a specified number of pod replicas are running at all times.</li>
+<li>It is typically managed by a Deployment.</li>
+</ul>
+<h3 id="statefulset">StatefulSet</h3>
+<ul>
+<li>A <strong>StatefulSet</strong> is used for stateful applications (e.g., databases).</li>
+<li>It provides stable network identities and persistent storage for each pod.</li>
+</ul>
+<h3 id="daemonset">DaemonSet</h3>
+<ul>
+<li>A <strong>DaemonSet</strong> ensures that a copy of a pod runs on all (or specific) nodes.</li>
+<li>Example use case: Running log collection or monitoring agents on every node.</li>
+</ul>
+<h3 id="job">Job</h3>
+<ul>
+<li>A <strong>Job</strong> runs a pod to completion.</li>
+<li>It is used for batch processing tasks.</li>
+</ul>
+<h3 id="cronjob">CronJob</h3>
+<ul>
+<li>A <strong>CronJob</strong> schedules jobs to run at specific times or intervals.</li>
+<li>Example use case: Running a backup script every night.</li>
+</ul>
+<h3 id="horizontal-pod-autoscaler">Horizontal Pod Autoscaler</h3>
+<ul>
+<li>Automatically scales the number of pods based on CPU/memory usage or custom metrics.</li>
+</ul>
+<h3 id="custom-resource-definitions-crds">Custom Resource Definitions (CRDs)</h3>
+<ul>
+<li>CRDs allow you to define your own resource types in Kubernetes.</li>
+<li>They extend Kubernetes' functionality to manage custom applications.</li>
+</ul>
+<h3 id="kubelet">Kubelet</h3>
+<ul>
+<li>A <strong>Kubelet</strong> is an agent that runs on each node.</li>
+<li>It ensures that containers are running in pods as specified by the Control Plane.</li>
+</ul>
+<h3 id="kube-proxy">Kube-proxy</h3>
+<ul>
+<li><strong>Kube-proxy</strong> manages network rules on nodes to allow communication between pods and services.</li>
+</ul>
+<h3 id="control-plane">Control Plane</h3>
+<ul>
+<li>The <strong>Control Plane</strong> is the brain of the cluster.</li>
+<li>It manages the state of the cluster and schedules workloads.</li>
+<li>Key components:<ul>
+<li><strong>API Server</strong>: Exposes the Kubernetes API.</li>
+<li><strong>etcd</strong>: Stores cluster state and configuration.</li>
+<li><strong>Scheduler</strong>: Assigns pods to nodes.</li>
+<li><strong>Controller Manager</strong>: Ensures the desired state of the cluster.</li>
+</ul>
+</li>
+</ul>
+<h3 id="etcd">etcd</h3>
+<ul>
+<li>A distributed key-value store used to store all cluster data.</li>
+<li>It is the source of truth for the cluster's state.</li>
+</ul>
+<h3 id="scheduler">Scheduler</h3>
+<ul>
+<li>The <strong>Scheduler</strong> assigns pods to nodes based on resource availability and constraints.</li>
+</ul>
+<h3 id="controller-manager">Controller Manager</h3>
+<ul>
+<li>The <strong>Controller Manager</strong> runs controllers that regulate the state of the cluster.</li>
+<li>Example controllers:<ul>
+<li><strong>Node Controller</strong>: Monitors node health.</li>
+<li><strong>Replication Controller</strong>: Ensures the desired number of pod replicas.</li>
+</ul>
+</li>
+</ul>
+<h3 id="admission-controller">Admission Controller</h3>
+<ul>
+<li>Validates and modifies requests to the API server before they are persisted in etcd.</li>
+</ul>
+<h3 id="network-policy">Network Policy</h3>
+<ul>
+<li>A <strong>Network Policy</strong> controls the communication between pods.</li>
+<li>It defines rules for ingress and egress traffic.</li>
+</ul>
+<h3 id="resource-quotas">Resource Quotas</h3>
+<ul>
+<li><strong>Resource Quotas</strong> limit the amount of resources (CPU, memory) a namespace can use.</li>
+</ul>
+<h3 id="limitrange"><strong>LimitRange</strong></h3>
+<ul>
+<li>A <strong>LimitRange</strong> sets default resource requests and limits for containers in a namespace.</li>
+</ul>
+<h3 id="pod-security-policies">Pod Security Policies</h3>
+<ul>
+<li><strong>Pod Security Policies</strong> control security settings for pods, such as:<ul>
+<li>Privileged access.</li>
+<li>Host network usage.</li>
+</ul>
+</li>
+</ul>
+<h3 id="serviceaccount">ServiceAccount</h3>
+<ul>
+<li>A <strong>ServiceAccount</strong> provides an identity for processes running in a pod to interact with the Kubernetes API.</li>
+</ul>
+<h3 id="rbac-role-based-access-control">RBAC (Role-Based Access Control)</h3>
+<ul>
+<li><strong>RBAC</strong> manages permissions for users and service accounts.</li>
+<li>It defines roles and role bindings to control access to resources.</li>
+</ul>
+<h3 id="network-plugins">Network Plugins</h3>
+<ul>
+<li><strong>Network Plugins</strong> extend Kubernetes networking capabilities using the Container Network Interface (CNI).</li>
+</ul>
+<hr />
+<h2 id="2-storage-persistence">💾 2. Storage &amp; Persistence</h2>
+<h3 id="persistentvolume-pv">PersistentVolume (PV)</h3>
+<ul>
+<li>A <strong>PersistentVolume</strong> is a piece of cluster storage provisioned by an administrator or dynamically.</li>
+</ul>
+<h3 id="persistentvolumeclaim-pvc">PersistentVolumeClaim (PVC)</h3>
+<ul>
+<li>A <strong>PersistentVolumeClaim</strong> is a request for storage by a pod.</li>
+</ul>
+<h3 id="storageclass">StorageClass</h3>
+<ul>
+<li>A <strong>StorageClass</strong> defines how storage is provisioned dynamically.</li>
+</ul>
+<hr />
+<h2 id="3-advanced-workloads">📦 3. Advanced Workloads</h2>
+<h3 id="statefulsets">StatefulSets</h3>
+<ul>
+<li>For stateful apps (like databases), gives stable network &amp; storage.</li>
+</ul>
+<h3 id="daemonsets">DaemonSets</h3>
+<ul>
+<li>Run one pod per node (e.g., for log collection).</li>
+</ul>
+<h3 id="jobs-cronjobs">Jobs &amp; CronJobs</h3>
+<ul>
+<li>For batch processing or scheduled tasks.</li>
+</ul>
+<h3 id="init-containers">Init Containers</h3>
+<ul>
+<li>Run before the main container starts.</li>
+</ul>
+<hr />
+<h2 id="4-extending-kubernetes">🔌 4. Extending Kubernetes</h2>
+<h3 id="custom-resources-crds">Custom Resources (CRDs)</h3>
+<ul>
+<li>Add new object types to the cluster.</li>
+</ul>
+<h3 id="operators">Operators</h3>
+<ul>
+<li>Controllers that manage complex apps using CRDs.</li>
+</ul>
+<h3 id="admission-controllers">Admission Controllers</h3>
+<ul>
+<li>Hook into request lifecycle to validate/mutate requests.</li>
+</ul>
+<hr />
+<h2 id="5-configuration-packaging">🎛️ 5. Configuration &amp; Packaging</h2>
+<h3 id="helm">Helm</h3>
+<ul>
+<li>The package manager for Kubernetes.<ul>
+<li><strong>Helm Chart</strong>: A templated set of YAMLs that define a k8s app.</li>
+<li>Great for reusability and sharing configurations.</li>
+</ul>
+</li>
+</ul>
+<h3 id="kustomize">Kustomize</h3>
+<ul>
+<li>Built-in tool for customizing YAML configurations.</li>
+</ul>
+<hr />
+<h2 id="6-security-access">🔒 6. Security &amp; Access</h2>
+<h3 id="rbac">RBAC</h3>
+<ul>
+<li>Role-Based Access Control.</li>
+</ul>
+<h3 id="serviceaccounts">ServiceAccounts</h3>
+<ul>
+<li>Access identity for pods.</li>
+</ul>
+<h3 id="network-policies">Network Policies</h3>
+<ul>
+<li>Control pod-to-pod communication.</li>
+</ul>
+<hr />
+<h2 id="7-observability">📈 7. Observability</h2>
+<h3 id="logs">Logs</h3>
+<ul>
+<li><code>kubectl logs</code>, or tools like Fluentd, Loki.</li>
+</ul>
+<h3 id="metrics">Metrics</h3>
+<ul>
+<li>Prometheus, Grafana.</li>
+</ul>
+<h3 id="tracing">Tracing</h3>
+<ul>
+<li>Jaeger, OpenTelemetry.</li>
+</ul>
+<h3 id="probes">Probes</h3>
+<ul>
+<li>Liveness and readiness checks.</li>
+</ul>
+<hr />
+<h2 id="8-cicd-gitops">⚙️ 8. CI/CD &amp; GitOps</h2>
+<h3 id="argocd-flux">ArgoCD / Flux</h3>
+<ul>
+<li>GitOps deployment tools.</li>
+</ul>
+<h3 id="jenkins-github-actions-kubectl">Jenkins / GitHub Actions + kubectl</h3>
+<ul>
+<li>Push apps to k8s.</li>
+</ul>
+<h3 id="secrets-management">Secrets Management</h3>
+<ul>
+<li>Use sealed-secrets, external-secrets, etc.</li>
+</ul>
+<hr />
+<h2 id="9-cloud-native-ecosystem">☁️ 9. Cloud-Native Ecosystem</h2>
+<h3 id="ingress-controllers">Ingress Controllers</h3>
+<ul>
+<li>NGINX, Traefik, or cloud-specific ones.</li>
+</ul>
+<h3 id="service-mesh">Service Mesh</h3>
+<ul>
+<li>A dedicated infrastructure layer for managing service-to-service communication.</li>
+<li>Features:<ul>
+<li>Traffic management (routing, load balancing).</li>
+<li>Observability (metrics, logs, tracing).</li>
+<li>Security (mTLS).</li>
+</ul>
+</li>
+<li>Examples: Istio, Linkerd.</li>
+</ul>
+<h3 id="container-runtimes">Container Runtimes</h3>
+<ul>
+<li>containerd, CRI-O.</li>
+</ul>
+<hr />
+<h2 id="recommended-learning-order">📘 Recommended Learning Order</h2>
+<ol>
+<li>Pods, Deployments, Services ✅</li>
+<li>ConfigMaps, Secrets, Volumes</li>
+<li>PVCs &amp; StorageClass</li>
+<li>Helm charts</li>
+<li>CRDs &amp; Operators</li>
+<li>Monitoring &amp; Probes</li>
+<li>Security basics (RBAC, NetworkPolicy)</li>
+<li>GitOps or Helm-based CI/CD</li>
+<li>Advanced topics (Service Mesh, Ingress Controllers)</li>
+<li>Cloud-native tools (Fluentd, Prometheus, Grafana)</li>
+<li>Explore the Kubernetes ecosystem (Istio, ArgoCD, etc.)</li>
+</ol>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": [], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

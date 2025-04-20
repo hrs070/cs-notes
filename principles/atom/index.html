@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://hrs070.github.io/cs-notes/principles/solid/">
+        <link rel="canonical" href="https://hrs070.github.io/cs-notes/principles/atom/">
       
       
-        <link rel="prev" href="../../cleanCode/">
+        <link rel="prev" href="../solid/">
       
       
-        <link rel="next" href="../atom/">
+        <link rel="next" href="../../devops/k8s/basics/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>SOLID - cs-notes</title>
+        <title>ATOM - cs-notes</title>
       
     
     
@@ -71,11 +71,6 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
-        
-        <a href="#solid" class="md-skip">
-          Skip to content
-        </a>
-      
     </div>
     <div data-md-component="announce">
       
@@ -108,7 +103,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SOLID
+              ATOM
             
           </span>
         </div>
@@ -307,32 +302,10 @@
                 
   
   
-    
   
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          
-  
-  
-  <span class="md-ellipsis">
-    SOLID
-    
-  </span>
-  
-
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../solid/" class="md-nav__link">
         
   
   
@@ -343,44 +316,6 @@
   
 
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-does-solid-stand-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧱 What does SOLID stand for?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -390,10 +325,17 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../atom/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         
   
   
@@ -404,6 +346,7 @@
   
 
       </a>
+      
     </li>
   
 
@@ -708,34 +651,6 @@
   
   
   
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#what-does-solid-stand-for" class="md-nav__link">
-    <span class="md-ellipsis">
-      🧱 What does SOLID stand for?
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#summary" class="md-nav__link">
-    <span class="md-ellipsis">
-      💡 Summary
-    </span>
-  </a>
-  
-</li>
-      
-    </ul>
   
 </nav>
                   </div>
@@ -751,70 +666,9 @@
 
 
 
-<h1 id="solid">SOLID</h1>
-<p>The SOLID principles are five key design principles in object-oriented programming (OOP), introduced by Robert C. Martin (Uncle Bob). These principles help make software more maintainable, scalable, testable, and easier to understand.</p>
-<h2 id="what-does-solid-stand-for">🧱 What does SOLID stand for?</h2>
-<table>
-<thead>
-<tr>
-<th>Principle</th>
-<th>Meaning</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>S</td>
-<td>Single Responsibility Principle (SRP)</td>
-</tr>
-<tr>
-<td>O</td>
-<td>Open/Closed Principle (OCP)</td>
-</tr>
-<tr>
-<td>L</td>
-<td>Liskov Substitution Principle (LSP)</td>
-</tr>
-<tr>
-<td>I</td>
-<td>Interface Segregation Principle (ISP)</td>
-</tr>
-<tr>
-<td>D</td>
-<td>Dependency Inversion Principle (DIP)</td>
-</tr>
-</tbody>
-</table>
-<h2 id="summary">💡 Summary</h2>
-<table>
-<thead>
-<tr>
-<th>Principle</th>
-<th>Goal</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SRP</td>
-<td>One responsibility per class</td>
-</tr>
-<tr>
-<td>OCP</td>
-<td>Extend without modifying</td>
-</tr>
-<tr>
-<td>LSP</td>
-<td>Safe substitutions</td>
-</tr>
-<tr>
-<td>ISP</td>
-<td>Split big interfaces</td>
-</tr>
-<tr>
-<td>DIP</td>
-<td>Depend on abstractions</td>
-</tr>
-</tbody>
-</table>
+  <h1>ATOM</h1>
+
+
 
 
 
