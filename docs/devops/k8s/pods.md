@@ -158,62 +158,26 @@ These probes help Kubernetes decide whether to restart a container or remove it 
 
 Here are some commonly used `kubectl` commands to manage Pods:
 
-1. **List all Pods**:
-   ```bash
-   kubectl get pods
-   ```
+1. **List all Pods**: `kubectl get pods`
 
-2. **Get detailed information about a Pod**:
-   ```bash
-   kubectl describe pod <pod-name>
-   ```
+2. **Get detailed information about a Pod**: `kubectl describe pod <pod-name>`
 
-3. **View Pod logs**:
-   ```bash
-   kubectl logs <pod-name>
-   ```
+3. **View Pod logs**: `kubectl logs <pod-name>`
 
-4. **View logs for a specific container in a Pod**:
-   ```bash
-   kubectl logs <pod-name> -c <container-name>
-   ```
+4. **View logs for a specific container in a Pod**: `kubectl logs <pod-name> -c <container-name>`
 
-5. **Execute a command inside a Pod**:
-   ```bash
-   kubectl exec -it <pod-name> -- <command>
-   ```
-   Example:
-   ```bash
-   kubectl exec -it my-pod -- /bin/bash
-   ```
+5. **Execute a command inside a Pod**: `kubectl exec -it <pod-name> -- <command>`
+    - Example: `kubectl exec -it my-pod -- /bin/bash`
 
-6. **Delete a Pod**:
-   ```bash
-   kubectl delete pod <pod-name>
-   ```
+6. **Delete a Pod**: `kubectl delete pod <pod-name>`
 
-7. **Get Pod status**:
-   ```bash
-   kubectl get pod <pod-name> -o wide
-   ```
+7. **Get Pod status**: `kubectl get pod <pod-name> -o wide`
 
-8. **Port-forward a Pod to access it locally**:
-   ```bash
-   kubectl port-forward <pod-name> <local-port>:<pod-port>
-   ```
-   Example:
-   ```bash
-   kubectl port-forward my-pod 8080:80
-   ```
+8. **Port-forward a Pod to access it locally**: `kubectl port-forward <pod-name> <local-port>:<pod-port>`
+    - Example: `kubectl port-forward my-pod 8080:80`
 
-9. **Check Pod events**:
-   ```bash
-   kubectl get events --field-selector involvedObject.name=<pod-name>
-   ```
+9. **Check Pod events**: `kubectl get events --field-selector involvedObject.name=<pod-name>`
 
-10. **Debug a Pod by creating a temporary Pod**:
-    ```bash
-    kubectl run debug-pod --image=busybox -it --rm -- /bin/sh
-    ```
+10. **Debug a Pod by creating a temporary Pod**: `kubectl run debug-pod --image=busybox -it --rm -- /bin/sh`
 
 ---

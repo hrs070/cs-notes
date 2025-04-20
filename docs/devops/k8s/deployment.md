@@ -124,30 +124,15 @@ spec:
 
 ## 🛠️ Common Commands for Deployments
 
-1. **Create a Deployment**:
-   ```bash
-   kubectl apply -f deployment.yaml
-   ```
+1. **Create a Deployment**: `kubectl apply -f deployment.yaml`
 
-2. **View Deployments**:
-   ```bash
-   kubectl get deployments
-   ```
+2. **View Deployments**: `kubectl get deployments`
 
-3. **Scale a Deployment**:
-   ```bash
-   kubectl scale deployment my-deployment --replicas=5
-   ```
+3. **Scale a Deployment**: `kubectl scale deployment my-deployment --replicas=5`
 
-4. **Update a Deployment**:
-   ```bash
-   kubectl set image deployment/my-deployment app=my-app-image:v2
-   ```
+4. **Update a Deployment**: `kubectl set image deployment/my-deployment app=my-app-image:v2`
 
-5. **Delete a Deployment**:
-   ```bash
-   kubectl delete deployment my-deployment
-   ```
+5. **Delete a Deployment**: `kubectl delete deployment my-deployment`
 
 ---
 
@@ -173,13 +158,7 @@ spec:
 ## 🔍 Additional Notes
 
 - **ReplicaSet**: Deployments manage ReplicaSets, which in turn manage pods. You usually don’t interact with ReplicaSets directly.
-- **Rollback**: If an update fails, you can rollback to a previous version using:
-  ```bash
-  kubectl rollout undo deployment my-deployment
-  ```
-- **Status Check**: Check the status of a Deployment using:
-  ```bash
-  kubectl rollout status deployment my-deployment
-  ```
+- **Rollback**: If an update fails, you can rollback to a previous version using: `kubectl rollout undo deployment my-deployment`
+- **Status Check**: Check the status of a Deployment using: `kubectl rollout status deployment my-deployment`
 
 ---

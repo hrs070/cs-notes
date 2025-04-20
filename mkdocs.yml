@@ -21,3 +21,8 @@ nav:
       - Basics: devops/k8s/basics.md
       - Pods: devops/k8s/pods.md
       - Deployment: devops/k8s/deployment.md
+      - Service: devops/k8s/service.md
+      - Volume: devops/k8s/volume.md
+      - Helm: devops/k8s/helm.md
+      - CRD: devops/k8s/crd.md
+      - FAQ: devops/k8s/faq.md
