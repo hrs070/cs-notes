@@ -12,5 +12,9 @@ use_directory_urls: true
 nav:
   - Home: index.md
   - Tips & Snippets: tips-and-snippets.md
+  - Clean Code: cleanCode.md
   - Principles:
-      - Solid: principles/solid.md
+    - SOLID: principles/solid.md
+    - ATOM: principles/atom.md
+  - Kubernetes (k8s):
+    - Basics: k8s/basics.md
