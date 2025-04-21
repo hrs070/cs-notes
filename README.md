@@ -43,5 +43,6 @@ nav:
 - Add commits and push to github
 - run `mkdocs gh-deploy`
 
-## To watch the while adding
-  - run `mkdocs serve` 
+## To Run Locally
+  - Use the command `mkdocs serve` to start a local development server.
+  - Open your browser and navigate to `http://127.0.0.1:8000/` to view the site.
