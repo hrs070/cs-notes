@@ -12,10 +12,11 @@ use_directory_urls: true
 nav:
   - Home: index.md
   - Tips & Snippets: tips-and-snippets.md
-  - Clean Code: cleanCode.md
   - Concepts:
     - SOLID: concepts/solid.md
     - ATOM: concepts/atom.md
+    - Clean Code: concepts/cleanCode.md
+    - OOP: concepts/oop.md
   - DevOps:
     - Kubernetes (k8s):
       - Basics: devops/k8s/basics.md
