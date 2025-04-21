@@ -14,7 +14,7 @@ nav:
   - Tips & Snippets: tips-and-snippets.md
   - Concepts:
     - SOLID: concepts/solid.md
-    - ATOM: concepts/atom.md
+    - ACID: concepts/acid.md
     - Clean Code: concepts/cleanCode.md
     - OOP: concepts/oop.md
   - DevOps:
