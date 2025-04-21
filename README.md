@@ -41,4 +41,7 @@ nav:
 ```
 
 - Add commits and push to github
-- run ```mkdocs gh-deploy```
+- run `mkdocs gh-deploy`
+
+## To watch the while adding
+  - run `mkdocs serve` 
