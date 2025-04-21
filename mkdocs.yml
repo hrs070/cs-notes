@@ -13,9 +13,9 @@ nav:
   - Home: index.md
   - Tips & Snippets: tips-and-snippets.md
   - Clean Code: cleanCode.md
-  - Principles:
-    - SOLID: principles/solid.md
-    - ATOM: principles/atom.md
+  - Concepts:
+    - SOLID: concepts/solid.md
+    - ATOM: concepts/atom.md
   - DevOps:
     - Kubernetes (k8s):
       - Basics: devops/k8s/basics.md
