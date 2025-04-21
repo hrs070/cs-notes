@@ -1,0 +1,2454 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://hrs070.github.io/cs-notes/concepts/cleanCode/">
+      
+      
+        <link rel="prev" href="../acid/">
+      
+      
+        <link rel="next" href="../oop/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Clean Code - cs-notes</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#clean-code" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="cs-notes" class="md-header__button md-logo" aria-label="cs-notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            cs-notes
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Clean Code
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+    
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="cs-notes" class="md-nav__button md-logo" aria-label="cs-notes" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    cs-notes
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../tips-and-snippets/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tips & Snippets
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Concepts
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Concepts
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOLID
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ACID
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Clean Code
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Clean Code
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-meaningful-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Meaningful Names
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Meaningful Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hard-to-pronounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Hard to Pronounce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easy-to-pronounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Easy to Pronounce
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-function-does-too-many-things" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad: Function does too many things
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-break-it-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good: Break it down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-too-many-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad: Too many arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-use-an-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good: Use an object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Comments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-explains-the-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good: Explains the why
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-explains-the-obvious" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad: Explains the obvious
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Formatting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Formatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-blank-lines-to-separate-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Blank Lines to Separate Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit-line-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limit Line Length
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example-using-return-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example: Using Return Codes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example-using-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example: Using Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-meaningful-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provide Meaningful Error Messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-exceptions-at-the-appropriate-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handle Exceptions at the Appropriate Level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-custom-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Custom Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example-large-monolithic-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example: Large, Monolithic Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example-break-it-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example: Break It Down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encapsulation-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encapsulation Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example-hard-to-read-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example: Hard-to-Read Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example-clean-and-readable-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example: Clean and Readable Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-mocks-and-stubs-for-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Mocks and Stubs for Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Edge Cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-general-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. General Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. General Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-in-typescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples in TypeScript
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples in TypeScript">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kiss-keep-it-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      KISS: Keep It Simple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dry-dont-repeat-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      DRY: Don't Repeat Yourself
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yagni-you-arent-gonna-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAGNI: You Aren't Gonna Need It
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fail Fast
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OOP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DevOps
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            DevOps
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Kubernetes (k8s)
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            Kubernetes (k8s)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/basics/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Basics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/pods/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Pods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/deployment/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Deployment
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Service
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/volume/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Volume
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/helm/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Helm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/crd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CRD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../devops/k8s/faq/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    FAQ
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introduction
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-meaningful-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Meaningful Names
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Meaningful Names">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hard-to-pronounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Hard to Pronounce
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#easy-to-pronounce" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Easy to Pronounce
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Functions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Functions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-function-does-too-many-things" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad: Function does too many things
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-break-it-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good: Break it down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-too-many-arguments" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad: Too many arguments
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-use-an-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good: Use an object
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Comments
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Comments">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-explains-the-why" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good: Explains the why
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-explains-the-obvious" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad: Explains the obvious
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-formatting" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Formatting
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Formatting">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-blank-lines-to-separate-concepts" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Blank Lines to Separate Concepts
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#limit-line-length" class="md-nav__link">
+    <span class="md-ellipsis">
+      Limit Line Length
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-error-handling" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. Error Handling
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Error Handling">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example-using-return-codes" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example: Using Return Codes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example-using-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example: Using Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-meaningful-error-messages" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provide Meaningful Error Messages
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#handle-exceptions-at-the-appropriate-level" class="md-nav__link">
+    <span class="md-ellipsis">
+      Handle Exceptions at the Appropriate Level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-custom-exceptions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Custom Exceptions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-classes" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Classes
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Classes">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example-large-monolithic-class" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example: Large, Monolithic Class
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example-break-it-down" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example: Break It Down
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#encapsulation-example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Encapsulation Example
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-testing" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Testing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Testing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bad-example-hard-to-read-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      ❌ Bad Example: Hard-to-Read Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#good-example-clean-and-readable-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      ✅ Good Example: Clean and Readable Test
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#use-mocks-and-stubs-for-dependencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Use Mocks and Stubs for Dependencies
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#test-edge-cases" class="md-nav__link">
+    <span class="md-ellipsis">
+      Test Edge Cases
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-general-principles" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. General Principles
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. General Principles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#principle_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#guidelines_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      Guidelines
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-in-typescript" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples in TypeScript
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Examples in TypeScript">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kiss-keep-it-simple" class="md-nav__link">
+    <span class="md-ellipsis">
+      KISS: Keep It Simple
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#dry-dont-repeat-yourself" class="md-nav__link">
+    <span class="md-ellipsis">
+      DRY: Don't Repeat Yourself
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#yagni-you-arent-gonna-need-it" class="md-nav__link">
+    <span class="md-ellipsis">
+      YAGNI: You Aren't Gonna Need It
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fail-fast" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fail Fast
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="clean-code">Clean Code</h1>
+<h2 id="introduction">Introduction</h2>
+<p>"Clean Code" by Robert C. Martin is a must-read for software developers who want to write maintainable, efficient, and readable code. This book emphasizes principles, patterns, and practices that help developers produce high-quality code.</p>
+<p>The following notes summarize key concepts from the book, along with examples in TypeScript to illustrate each principle.</p>
+<hr />
+<h2 id="1-meaningful-names">1. Meaningful Names</h2>
+<h3 id="principle">Principle</h3>
+<p>Choosing meaningful and descriptive names for variables, functions, and classes is critical for writing clean code. Names should reveal intent, avoid disinformation, and be pronounceable.</p>
+<h3 id="guidelines">Guidelines</h3>
+<ul>
+<li>Use intention-revealing names.</li>
+<li>Avoid disinformation.</li>
+<li>Make names pronounceable.</li>
+<li>Use searchable names.</li>
+<li>Avoid encodings or Hungarian notation.</li>
+</ul>
+<h3 id="bad-example">❌ Bad Example</h3>
+<pre><code class="language-typescript">function d(a: number, b: number): number {
+    return a * b / 2;
+}
+
+const t = d(10, 5);
+console.log(t);
+</code></pre>
+<h3 id="good-example">✅ Good Example</h3>
+<pre><code class="language-typescript">function calculateTriangleArea(base: number, height: number): number {
+    return (base * height) / 2;
+}
+
+const triangleArea = calculateTriangleArea(10, 5);
+console.log(triangleArea);
+</code></pre>
+<h3 id="hard-to-pronounce">❌ Hard to Pronounce</h3>
+<pre><code class="language-typescript">const genymdhms = &quot;2025-04-21T10:00:00Z&quot;;
+</code></pre>
+<h3 id="easy-to-pronounce">✅ Easy to Pronounce</h3>
+<pre><code class="language-typescript">const generationTimestamp = &quot;2025-04-21T10:00:00Z&quot;;
+</code></pre>
+<hr />
+<h2 id="2-functions">2. Functions</h2>
+<h3 id="principle_1">Principle</h3>
+<p>Functions should be small, do one thing, and do it well. They should be easy to read, test, and maintain.</p>
+<h3 id="guidelines_1">Guidelines</h3>
+<ul>
+<li>Keep functions small (ideally under 20 lines).</li>
+<li>Make them do one thing.</li>
+<li>Use descriptive names.</li>
+<li>Avoid side effects.</li>
+<li>Keep the number of arguments low (ideally ≤ 3).</li>
+</ul>
+<h3 id="bad-function-does-too-many-things">❌ Bad: Function does too many things</h3>
+<pre><code class="language-typescript">function processUserData(user: { name: string; age: number; email: string }): void {
+    console.log(`User: ${user.name}`);
+    if (user.age &gt;= 18) {
+        console.log(&quot;User is an adult.&quot;);
+    } else {
+        console.log(&quot;User is a minor.&quot;);
+    }
+    sendEmail(user.email, &quot;Welcome!&quot;);
+}
+</code></pre>
+<h3 id="good-break-it-down">✅ Good: Break it down</h3>
+<pre><code class="language-typescript">function logUserName(name: string): void {
+    console.log(`User: ${name}`);
+}
+
+function checkUserAge(age: number): void {
+    if (age &gt;= 18) {
+        console.log(&quot;User is an adult.&quot;);
+    } else {
+        console.log(&quot;User is a minor.&quot;);
+    }
+}
+
+function sendWelcomeEmail(email: string): void {
+    sendEmail(email, &quot;Welcome!&quot;);
+}
+
+function sendEmail(email: string, message: string): void {
+    console.log(`Sending email to ${email}: ${message}`);
+}
+
+const user = { name: &quot;John&quot;, age: 25, email: &quot;john@example.com&quot; };
+
+logUserName(user.name);
+checkUserAge(user.age);
+sendWelcomeEmail(user.email);
+</code></pre>
+<h3 id="bad-too-many-arguments">❌ Bad: Too many arguments</h3>
+<pre><code class="language-typescript">function createUser(name: string, age: number, email: string, isAdmin: boolean): void {
+    console.log(`Name: ${name}, Age: ${age}, Email: ${email}, Admin: ${isAdmin}`);
+}
+</code></pre>
+<h3 id="good-use-an-object">✅ Good: Use an object</h3>
+<pre><code class="language-typescript">interface User {
+    name: string;
+    age: number;
+    email: string;
+    isAdmin: boolean;
+}
+
+function createUser(user: User): void {
+    console.log(`Name: ${user.name}, Age: ${user.age}, Email: ${user.email}, Admin: ${user.isAdmin}`);
+}
+
+const newUser: User = {
+    name: &quot;Jane&quot;,
+    age: 30,
+    email: &quot;jane@example.com&quot;,
+    isAdmin: true
+};
+
+createUser(newUser);
+</code></pre>
+<hr />
+<h2 id="3-comments">3. Comments</h2>
+<h3 id="principle_2">Principle</h3>
+<p>Code should be self-explanatory whenever possible. Use comments to explain "why", not "what". Avoid redundant, misleading, or outdated comments.</p>
+<h3 id="good-explains-the-why">✅ Good: Explains the why</h3>
+<pre><code class="language-typescript">// Using a Set to improve lookup time
+const visited = new Set&lt;string&gt;();
+</code></pre>
+<h3 id="bad-explains-the-obvious">❌ Bad: Explains the obvious</h3>
+<pre><code class="language-typescript">// Increment i by 1
+i = i + 1;
+</code></pre>
+<hr />
+<h2 id="4-formatting">4. Formatting</h2>
+<h3 id="principle_3">Principle</h3>
+<p>Proper formatting improves the readability and maintainability of code. Consistent formatting helps developers quickly understand the structure and flow of the code.</p>
+<h3 id="guidelines_2">Guidelines</h3>
+<ul>
+<li>Use consistent indentation (e.g., 4 spaces per level).</li>
+<li>Group related code together.</li>
+<li>Use blank lines to separate unrelated sections of code.</li>
+<li>Limit line length (e.g., 80–120 characters).</li>
+<li>Align code for clarity when appropriate.</li>
+</ul>
+<h3 id="bad-example_1">❌ Bad Example</h3>
+<pre><code class="language-typescript">// Bad: Inconsistent indentation and poor grouping
+function calculateTotal(items: number[], tax: number): number {
+let total=0;for(let i=0;i&lt;items.length;i++){total+=items[i];}total+=total*tax;return total;}
+
+const items=[10,20,30];
+const tax=0.1;const total=calculateTotal(items,tax);console.log(total);
+</code></pre>
+<h3 id="good-example_1">✅ Good Example</h3>
+<pre><code class="language-typescript">// Good: Consistent indentation and proper grouping
+function calculateTotal(items: number[], tax: number): number {
+    let total = 0;
+
+    for (let i = 0; i &lt; items.length; i++) {
+        total += items[i];
+    }
+
+    total += total * tax;
+    return total;
+}
+
+// Usage
+const items = [10, 20, 30];
+const tax = 0.1;
+const total = calculateTotal(items, tax);
+console.log(total);
+</code></pre>
+<h3 id="use-blank-lines-to-separate-concepts">Use Blank Lines to Separate Concepts</h3>
+<pre><code class="language-typescript">// Bad: No separation between unrelated code
+const user = { name: &quot;Alice&quot;, age: 25 };
+console.log(user.name); const items = [1, 2, 3]; console.log(items.length);
+
+// Good: Add blank lines to separate concepts
+const user = { name: &quot;Alice&quot;, age: 25 };
+console.log(user.name);
+
+const items = [1, 2, 3];
+console.log(items.length);
+</code></pre>
+<h3 id="limit-line-length">Limit Line Length</h3>
+<pre><code class="language-typescript">// Bad: Line is too long
+const message = &quot;This is a very long message that exceeds the recommended line length and makes the code harder to read.&quot;;
+
+// Good: Break long lines into multiple lines
+const message = &quot;This is a very long message that exceeds the recommended line length &quot; +
+                &quot;and makes the code harder to read.&quot;;
+</code></pre>
+<hr />
+<h2 id="5-error-handling">5. Error Handling</h2>
+<h3 id="principle_4">Principle</h3>
+<p>Error handling is an essential part of writing clean code. It should be done gracefully and in a way that does not obscure the logic of the program. Avoid cluttering the code with error-handling logic and ensure that errors are handled consistently.</p>
+<h3 id="guidelines_3">Guidelines</h3>
+<ul>
+<li>Use exceptions instead of return codes to handle errors.</li>
+<li>Provide meaningful error messages that describe the problem clearly.</li>
+<li>Handle exceptions at the appropriate level where they can be meaningfully addressed.</li>
+<li>Avoid swallowing exceptions without taking action or rethrowing them.</li>
+<li>Use custom exceptions to represent specific error conditions.</li>
+</ul>
+<h3 id="bad-example-using-return-codes">❌ Bad Example: Using Return Codes</h3>
+<pre><code class="language-typescript">// Bad: Using return codes for error handling
+function divide(a: number, b: number): number | null {
+    if (b === 0) {
+        return null; // Error case
+    }
+    return a / b;
+}
+
+const result = divide(10, 0);
+if (result === null) {
+    console.log(&quot;Error: Division by zero&quot;);
+} else {
+    console.log(result);
+}
+</code></pre>
+<h3 id="good-example-using-exceptions">✅ Good Example: Using Exceptions</h3>
+<pre><code class="language-typescript">// Good: Using exceptions for error handling
+function divide(a: number, b: number): number {
+    if (b === 0) {
+        throw new Error(&quot;Division by zero is not allowed&quot;);
+    }
+    return a / b;
+}
+
+try {
+    const result = divide(10, 0);
+    console.log(result);
+} catch (error) {
+    console.error(error.message);
+}
+</code></pre>
+<h3 id="provide-meaningful-error-messages">Provide Meaningful Error Messages</h3>
+<pre><code class="language-typescript">// Bad: Generic error message
+throw new Error(&quot;Something went wrong&quot;);
+
+// Good: Specific error message
+throw new Error(&quot;Invalid user ID: User ID must be a positive integer&quot;);
+</code></pre>
+<h3 id="handle-exceptions-at-the-appropriate-level">Handle Exceptions at the Appropriate Level</h3>
+<pre><code class="language-typescript">// Bad: Catching exceptions too early
+try {
+    const data = fetchDataFromAPI();
+    processData(data);
+} catch (error) {
+    console.error(&quot;Error occurred&quot;); // No meaningful handling
+}
+
+// Good: Catch exceptions where they can be handled meaningfully
+function fetchDataAndProcess(): void {
+    try {
+        const data = fetchDataFromAPI();
+        processData(data);
+    } catch (error) {
+        console.error(&quot;Failed to fetch or process data:&quot;, error.message);
+    }
+}
+</code></pre>
+<h3 id="use-custom-exceptions">Use Custom Exceptions</h3>
+<pre><code class="language-typescript">// Good: Define a custom exception
+class InvalidUserInputError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = &quot;InvalidUserInputError&quot;;
+    }
+}
+
+function validateUserInput(input: string): void {
+    if (input.trim() === &quot;&quot;) {
+        throw new InvalidUserInputError(&quot;Input cannot be empty&quot;);
+    }
+}
+
+// Usage
+try {
+    validateUserInput(&quot;&quot;);
+} catch (error) {
+    if (error instanceof InvalidUserInputError) {
+        console.error(&quot;User input error:&quot;, error.message);
+    } else {
+        console.error(&quot;Unexpected error:&quot;, error.message);
+    }
+}
+</code></pre>
+<hr />
+<h2 id="6-classes">6. Classes</h2>
+<h3 id="principle_5">Principle</h3>
+<p>Classes should be small and focused, just like functions. A class should have a single responsibility and encapsulate related data and behavior. Avoid creating large, monolithic classes that try to do too much.</p>
+<h3 id="guidelines_4">Guidelines</h3>
+<ul>
+<li>Follow the <strong>Single Responsibility Principle (SRP)</strong>: A class should have only one reason to change.</li>
+<li>Keep classes small and cohesive.</li>
+<li>Use meaningful names for classes that describe their purpose.</li>
+<li>Encapsulate internal details and expose only what is necessary through public methods.</li>
+<li>Prefer composition over inheritance when possible.</li>
+</ul>
+<h3 id="bad-example-large-monolithic-class">❌ Bad Example: Large, Monolithic Class</h3>
+<pre><code class="language-typescript">// Bad: Class does too many things
+class UserManager {
+    private users: { name: string; email: string }[] = [];
+
+    addUser(name: string, email: string): void {
+        this.users.push({ name, email });
+    }
+
+    removeUser(email: string): void {
+        this.users = this.users.filter((user) =&gt; user.email !== email);
+    }
+
+    sendEmail(email: string, message: string): void {
+        console.log(`Sending email to ${email}: ${message}`);
+    }
+
+    listUsers(): void {
+        console.log(this.users);
+    }
+}
+</code></pre>
+<h3 id="good-example-break-it-down">✅ Good Example: Break It Down</h3>
+<pre><code class="language-typescript">// Good: Separate responsibilities into smaller classes
+class User {
+    constructor(public name: string, public email: string) {}
+}
+
+class UserRepository {
+    private users: User[] = [];
+
+    addUser(user: User): void {
+        this.users.push(user);
+    }
+
+    removeUser(email: string): void {
+        this.users = this.users.filter((user) =&gt; user.email !== email);
+    }
+
+    getUsers(): User[] {
+        return this.users;
+    }
+}
+
+class EmailService {
+    sendEmail(email: string, message: string): void {
+        console.log(`Sending email to ${email}: ${message}`);
+    }
+}
+
+// Usage
+const userRepository = new UserRepository();
+const emailService = new EmailService();
+
+const user = new User(&quot;John Doe&quot;, &quot;john@example.com&quot;);
+userRepository.addUser(user);
+
+emailService.sendEmail(user.email, &quot;Welcome to our platform!&quot;);
+console.log(userRepository.getUsers());
+</code></pre>
+<h3 id="encapsulation-example">Encapsulation Example</h3>
+<pre><code class="language-typescript">// Good: Encapsulate internal details
+class BankAccount {
+    private balance: number;
+
+    constructor(initialBalance: number) {
+        this.balance = initialBalance;
+    }
+
+    deposit(amount: number): void {
+        if (amount &lt;= 0) {
+            throw new Error(&quot;Deposit amount must be positive&quot;);
+        }
+        this.balance += amount;
+    }
+
+    withdraw(amount: number): void {
+        if (amount &gt; this.balance) {
+            throw new Error(&quot;Insufficient funds&quot;);
+        }
+        this.balance -= amount;
+    }
+
+    getBalance(): number {
+        return this.balance;
+    }
+}
+
+// Usage
+const account = new BankAccount(100);
+account.deposit(50);
+account.withdraw(30);
+console.log(account.getBalance()); // Output: 120
+</code></pre>
+<hr />
+<h2 id="7-testing">7. Testing</h2>
+<h3 id="principle_6">Principle</h3>
+<p>Testing is an essential part of writing clean code. Tests ensure that your code works as expected and remains maintainable over time. Clean tests are easy to read, understand, and maintain. They should focus on verifying behavior, not implementation details.</p>
+<h3 id="guidelines_5">Guidelines</h3>
+<ul>
+<li>Write tests that are easy to read and understand.</li>
+<li>Follow the <strong>FIRST</strong> principles:<ul>
+<li><strong>Fast</strong>: Tests should run quickly.</li>
+<li><strong>Independent</strong>: Tests should not depend on each other.</li>
+<li><strong>Repeatable</strong>: Tests should produce the same results every time.</li>
+<li><strong>Self-validating</strong>: Tests should automatically verify success or failure.</li>
+<li><strong>Timely</strong>: Write tests as soon as possible, ideally before writing the code (TDD).</li>
+</ul>
+</li>
+<li>Use descriptive names for test cases.</li>
+<li>Test one thing at a time.</li>
+<li>Avoid testing implementation details; focus on behavior.</li>
+</ul>
+<h3 id="bad-example-hard-to-read-test">❌ Bad Example: Hard-to-Read Test</h3>
+<pre><code class="language-typescript">// Bad: Test is hard to read and understand
+test(&quot;should add user&quot;, () =&gt; {
+    const u = new User(&quot;John&quot;, &quot;john@example.com&quot;);
+    const repo = new UserRepository();
+    repo.addUser(u);
+    expect(repo.getUsers().length).toBe(1);
+    expect(repo.getUsers()[0].name).toBe(&quot;John&quot;);
+});
+</code></pre>
+<h3 id="good-example-clean-and-readable-test">✅ Good Example: Clean and Readable Test</h3>
+<pre><code class="language-typescript">// Good: Test is clean and descriptive
+test(&quot;should add a user to the repository&quot;, () =&gt; {
+    // Arrange
+    const user = new User(&quot;John&quot;, &quot;john@example.com&quot;);
+    const userRepository = new UserRepository();
+
+    // Act
+    userRepository.addUser(user);
+
+    // Assert
+    const users = userRepository.getUsers();
+    expect(users).toHaveLength(1);
+    expect(users[0].name).toBe(&quot;John&quot;);
+    expect(users[0].email).toBe(&quot;john@example.com&quot;);
+});
+</code></pre>
+<h3 id="use-mocks-and-stubs-for-dependencies">Use Mocks and Stubs for Dependencies</h3>
+<pre><code class="language-typescript">// Example: Mocking an email service
+class MockEmailService {
+    sendEmail(email: string, message: string): void {
+        console.log(`Mock email sent to ${email}: ${message}`);
+    }
+}
+
+test(&quot;should send a welcome email&quot;, () =&gt; {
+    // Arrange
+    const emailService = new MockEmailService();
+    const user = new User(&quot;Jane&quot;, &quot;jane@example.com&quot;);
+
+    // Act
+    emailService.sendEmail(user.email, &quot;Welcome!&quot;);
+
+    // Assert
+    // (In a real test, you would verify that the email was sent correctly)
+});
+</code></pre>
+<h3 id="test-edge-cases">Test Edge Cases</h3>
+<pre><code class="language-typescript">// Example: Testing edge cases for a bank account
+test(&quot;should throw an error when withdrawing more than the balance&quot;, () =&gt; {
+    const account = new BankAccount(100);
+
+    expect(() =&gt; account.withdraw(200)).toThrow(&quot;Insufficient funds&quot;);
+});
+
+test(&quot;should throw an error when depositing a negative amount&quot;, () =&gt; {
+    const account = new BankAccount(100);
+
+    expect(() =&gt; account.deposit(-50)).toThrow(&quot;Deposit amount must be positive&quot;);
+});
+</code></pre>
+<hr />
+<h2 id="8-general-principles">8. General Principles</h2>
+<h3 id="principle_7">Principle</h3>
+<p>Clean code is guided by a set of overarching principles that help developers write maintainable, efficient, and readable code. These principles ensure that the codebase remains simple, consistent, and free of unnecessary complexity.</p>
+<h3 id="guidelines_6">Guidelines</h3>
+<ol>
+<li><strong>Keep It Simple, Stupid (KISS)</strong>: Avoid overengineering and keep the code as simple as possible.</li>
+<li><strong>Don't Repeat Yourself (DRY)</strong>: Eliminate duplication by abstracting common logic into reusable components.</li>
+<li><strong>You Aren't Gonna Need It (YAGNI)</strong>: Do not implement features or functionality until they are actually needed.</li>
+<li><strong>Separation of Concerns (SoC)</strong>: Divide the code into distinct sections, each responsible for a specific concern or functionality.</li>
+<li><strong>Open/Closed Principle</strong>: Code should be open for extension but closed for modification.</li>
+<li><strong>Single Responsibility Principle (SRP)</strong>: A class or function should have only one reason to change.</li>
+<li><strong>Fail Fast</strong>: Write code that fails early and clearly when something goes wrong.</li>
+</ol>
+<h3 id="examples-in-typescript">Examples in TypeScript</h3>
+<h4 id="kiss-keep-it-simple">KISS: Keep It Simple</h4>
+<pre><code class="language-typescript">// Bad: Overengineered solution
+class MathOperations {
+    static add(a: number, b: number): number {
+        return a + b;
+    }
+
+    static subtract(a: number, b: number): number {
+        return a - b;
+    }
+}
+
+const result = MathOperations.add(5, 3);
+console.log(result);
+
+// Good: Simple and straightforward
+const result = 5 + 3;
+console.log(result);
+</code></pre>
+<h4 id="dry-dont-repeat-yourself">DRY: Don't Repeat Yourself</h4>
+<pre><code class="language-typescript">// Bad: Repeated logic
+function calculateCircleArea(radius: number): number {
+    return Math.PI * radius * radius;
+}
+
+function calculateSphereVolume(radius: number): number {
+    return (4 / 3) * Math.PI * radius * radius * radius;
+}
+
+// Good: Abstract common logic
+function calculatePower(base: number, exponent: number): number {
+    return Math.pow(base, exponent);
+}
+
+function calculateCircleArea(radius: number): number {
+    return Math.PI * calculatePower(radius, 2);
+}
+
+function calculateSphereVolume(radius: number): number {
+    return (4 / 3) * Math.PI * calculatePower(radius, 3);
+}
+</code></pre>
+<h4 id="yagni-you-arent-gonna-need-it">YAGNI: You Aren't Gonna Need It</h4>
+<pre><code class="language-typescript">// Bad: Adding unnecessary functionality
+class User {
+    constructor(public name: string, public email: string) {}
+
+    // Unused method
+    getFullName(): string {
+        return this.name;
+    }
+}
+
+// Good: Only implement what is needed
+class User {
+    constructor(public name: string, public email: string) {}
+}
+</code></pre>
+<h4 id="fail-fast">Fail Fast</h4>
+<pre><code class="language-typescript">// Bad: Fails silently
+function getUserById(id: number): User | null {
+    if (id &lt;= 0) {
+        return null; // Invalid ID
+    }
+    // Fetch user logic...
+    return new User(&quot;John&quot;, &quot;john@example.com&quot;);
+}
+
+// Good: Fails fast with clear error
+function getUserById(id: number): User {
+    if (id &lt;= 0) {
+        throw new Error(&quot;Invalid user ID&quot;);
+    }
+    // Fetch user logic...
+    return new User(&quot;John&quot;, &quot;john@example.com&quot;);
+}
+</code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -8,13 +8,13 @@
       
       
       
-        <link rel="canonical" href="https://hrs070.github.io/cs-notes/principles/solid/">
+        <link rel="canonical" href="https://hrs070.github.io/cs-notes/concepts/acid/">
       
       
-        <link rel="prev" href="../../cleanCode/">
+        <link rel="prev" href="../solid/">
       
       
-        <link rel="next" href="../atom/">
+        <link rel="next" href="../cleanCode/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -22,7 +22,7 @@
     
     
       
-        <title>SOLID - cs-notes</title>
+        <title>ACID - cs-notes</title>
       
     
     
@@ -72,7 +72,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#solid" class="md-skip">
+        <a href="#acid-principle" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              SOLID
+              ACID
             
           </span>
         </div>
@@ -245,28 +245,6 @@
       
   
   
-  
-  
-    <li class="md-nav__item">
-      <a href="../../cleanCode/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    Clean Code
-    
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
     
   
   
@@ -280,15 +258,15 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
             
   
   
   <span class="md-ellipsis">
-    Principles
+    Concepts
     
   </span>
   
@@ -296,12 +274,35 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_4">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
             <span class="md-nav__icon md-icon"></span>
-            Principles
+            Concepts
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../solid/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    SOLID
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -324,7 +325,7 @@
   
   
   <span class="md-ellipsis">
-    SOLID
+    ACID
     
   </span>
   
@@ -337,7 +338,7 @@
   
   
   <span class="md-ellipsis">
-    SOLID
+    ACID
     
   </span>
   
@@ -360,18 +361,174 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-does-solid-stand-for" class="md-nav__link">
+  <a href="#summary-table" class="md-nav__link">
     <span class="md-ellipsis">
-      🧱 What does SOLID stand for?
+      Summary Table
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-is-a-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is a Transaction?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acid-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACID Properties
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ACID Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-atomicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Atomicity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Atomicity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Mechanisms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Consistency
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Consistency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-mechanisms_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Mechanisms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Isolation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Isolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isolation-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Isolation Levels:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-durability" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Durability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Durability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-mechanisms_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Mechanisms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 Summary
+      Summary
     </span>
   </a>
   
@@ -393,12 +550,35 @@
   
   
     <li class="md-nav__item">
-      <a href="../atom/" class="md-nav__link">
+      <a href="../cleanCode/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
-    ATOM
+    Clean Code
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../oop/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    OOP
     
   </span>
   
@@ -431,10 +611,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
         
           
-          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
             
   
   
@@ -447,8 +627,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
             <span class="md-nav__icon md-icon"></span>
             DevOps
           </label>
@@ -469,10 +649,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
         
           
-          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
             
   
   
@@ -485,8 +665,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_5_1">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
             <span class="md-nav__icon md-icon"></span>
             Kubernetes (k8s)
           </label>
@@ -718,18 +898,174 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#what-does-solid-stand-for" class="md-nav__link">
+  <a href="#summary-table" class="md-nav__link">
     <span class="md-ellipsis">
-      🧱 What does SOLID stand for?
+      Summary Table
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
+  <a href="#what-is-a-transaction" class="md-nav__link">
+    <span class="md-ellipsis">
+      What is a Transaction?
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#acid-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      ACID Properties
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ACID Properties">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-atomicity" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. Atomicity
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Atomicity">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Mechanisms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Consistency
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Consistency">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-mechanisms_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Mechanisms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-isolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Isolation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Isolation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isolation-levels" class="md-nav__link">
+    <span class="md-ellipsis">
+      Isolation Levels:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-durability" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Durability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Durability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#key-mechanisms_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Key Mechanisms:
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#example_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Example:
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#summary" class="md-nav__link">
     <span class="md-ellipsis">
-      💡 Summary
+      Summary
     </span>
   </a>
   
@@ -751,70 +1087,107 @@
 
 
 
-<h1 id="solid">SOLID</h1>
-<p>The SOLID principles are five key design principles in object-oriented programming (OOP), introduced by Robert C. Martin (Uncle Bob). These principles help make software more maintainable, scalable, testable, and easier to understand.</p>
-<h2 id="what-does-solid-stand-for">🧱 What does SOLID stand for?</h2>
+<h1 id="acid-principle">ACID Principle</h1>
+<p>The ACID principle is a set of properties that ensure reliable processing of database transactions. These properties are crucial for maintaining data integrity in database systems, especially in the event of errors, power failures, or concurrent access by multiple users.</p>
+<h2 id="summary-table">Summary Table</h2>
 <table>
 <thead>
 <tr>
-<th>Principle</th>
-<th>Meaning</th>
+<th>Property</th>
+<th>Description</th>
+<th>Key Mechanisms</th>
+<th>Example</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>S</td>
-<td>Single Responsibility Principle (SRP)</td>
+<td><strong>Atomicity</strong></td>
+<td>Ensures all operations in a transaction are completed or none</td>
+<td>Undo logs, transaction management systems</td>
+<td>Bank transfer: rollback if debit succeeds but credit fails</td>
 </tr>
 <tr>
-<td>O</td>
-<td>Open/Closed Principle (OCP)</td>
+<td><strong>Consistency</strong></td>
+<td>Ensures DB transitions from one valid state to another</td>
+<td>DB constraints (e.g., primary keys), app-level checks</td>
+<td>E-commerce: prevent stock from going below zero</td>
 </tr>
 <tr>
-<td>L</td>
-<td>Liskov Substitution Principle (LSP)</td>
+<td><strong>Isolation</strong></td>
+<td>Prevents interference between concurrent transactions</td>
+<td>Isolation levels: Read Uncommitted → Serializable</td>
+<td>Flight booking: only one user books the last seat</td>
 </tr>
 <tr>
-<td>I</td>
-<td>Interface Segregation Principle (ISP)</td>
-</tr>
-<tr>
-<td>D</td>
-<td>Dependency Inversion Principle (DIP)</td>
+<td><strong>Durability</strong></td>
+<td>Guarantees committed changes are permanent</td>
+<td>WAL (Write-Ahead Logging), checkpoints, backups</td>
+<td>Online purchase: order persists after a system crash</td>
 </tr>
 </tbody>
 </table>
-<h2 id="summary">💡 Summary</h2>
-<table>
-<thead>
-<tr>
-<th>Principle</th>
-<th>Goal</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>SRP</td>
-<td>One responsibility per class</td>
-</tr>
-<tr>
-<td>OCP</td>
-<td>Extend without modifying</td>
-</tr>
-<tr>
-<td>LSP</td>
-<td>Safe substitutions</td>
-</tr>
-<tr>
-<td>ISP</td>
-<td>Split big interfaces</td>
-</tr>
-<tr>
-<td>DIP</td>
-<td>Depend on abstractions</td>
-</tr>
-</tbody>
-</table>
+<h2 id="what-is-a-transaction">What is a Transaction?</h2>
+<p>A transaction is a sequence of one or more operations performed as a single logical unit of work. A transaction must adhere to the ACID properties to ensure consistency and reliability in a database.</p>
+<h2 id="acid-properties">ACID Properties</h2>
+<h3 id="1-atomicity">1. Atomicity</h3>
+<p>Atomicity ensures that a transaction is treated as a single, indivisible unit. Either all operations in the transaction are completed successfully, or none of them are applied. This prevents partial updates to the database.</p>
+<h4 id="key-mechanisms">Key Mechanisms:</h4>
+<ul>
+<li>Undo logs are often used to roll back incomplete transactions.</li>
+<li>Transaction management systems ensure atomicity by marking transactions as either "committed" or "aborted."</li>
+</ul>
+<h4 id="example">Example:</h4>
+<p>Consider a bank transfer where $100 is moved from Account A to Account B:
+- Debit $100 from Account A.
+- Credit $100 to Account B.</p>
+<p>If the system crashes after debiting Account A but before crediting Account B, atomicity ensures that the transaction is rolled back, leaving both accounts unchanged.</p>
+<hr />
+<h3 id="2-consistency">2. Consistency</h3>
+<p>Consistency ensures that a transaction brings the database from one valid state to another. Any rules, constraints, or integrity conditions defined in the database must be preserved after the transaction is completed.</p>
+<h4 id="key-mechanisms_1">Key Mechanisms:</h4>
+<ul>
+<li>Database constraints such as primary keys, foreign keys, and unique constraints help enforce consistency.</li>
+<li>Application-level validations also contribute to maintaining consistency.</li>
+</ul>
+<h4 id="example_1">Example:</h4>
+<p>In an e-commerce application:
+- A product's stock level must never go below zero.
+- If a customer places an order, the stock is reduced only if sufficient inventory exists.</p>
+<p>If a transaction violates this rule, it will be aborted to maintain consistency.</p>
+<hr />
+<h3 id="3-isolation">3. Isolation</h3>
+<p>Isolation ensures that concurrent transactions do not interfere with each other. The intermediate state of a transaction is not visible to other transactions until it is committed.</p>
+<h4 id="isolation-levels">Isolation Levels:</h4>
+<ul>
+<li><strong>Read Uncommitted</strong>: Transactions can read uncommitted changes from other transactions (least strict).</li>
+<li><strong>Read Committed</strong>: Transactions can only read committed changes.</li>
+<li><strong>Repeatable Read</strong>: Ensures that data read during a transaction cannot change.</li>
+<li><strong>Serializable</strong>: Ensures complete isolation by serializing transactions (most strict).</li>
+</ul>
+<h4 id="example_2">Example:</h4>
+<p>Two users are attempting to book the last seat on a flight:
+- User A and User B both try to reserve the seat simultaneously.
+- Isolation ensures that only one transaction succeeds, and the other is either retried or aborted.</p>
+<p>This prevents conflicts and ensures accurate results.</p>
+<hr />
+<h3 id="4-durability">4. Durability</h3>
+<p>Durability ensures that once a transaction is committed, its changes are permanent, even in the event of a system crash. The database system uses mechanisms like write-ahead logs or backups to guarantee durability.</p>
+<h4 id="key-mechanisms_2">Key Mechanisms:</h4>
+<ul>
+<li>Write-ahead logging (WAL) ensures that changes are written to a log before being applied to the database.</li>
+<li>Checkpoints and backups are used to recover committed transactions after a crash.</li>
+</ul>
+<h4 id="example_3">Example:</h4>
+<p>After a customer completes an online purchase:
+- The order details are stored in the database.
+- Even if the system crashes immediately after the confirmation, the order will still exist when the system is restored.</p>
+<hr />
+<h2 id="summary">Summary</h2>
+<p>The ACID properties work together to ensure the reliability and correctness of database transactions:
+- <strong>Atomicity</strong>: All or nothing.
+- <strong>Consistency</strong>: Valid state transitions.
+- <strong>Isolation</strong>: No interference between transactions.
+- <strong>Durability</strong>: Changes are permanent after commit.</p>
 
 
 
